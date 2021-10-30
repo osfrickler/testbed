@@ -20,23 +20,23 @@ openstack_cacert: /etc/ssl/certs/ca-certificates.crt
 # openstack
 
 # enable services
-enable_aodh: "yes"
-enable_barbican: "yes"
-enable_ceilometer: "yes"
+enable_aodh: "no"
+enable_barbican: "no"
+enable_ceilometer: "no"
 enable_cinder: "yes"
-enable_cinder_backup: "yes"
+enable_cinder_backup: "no"
 enable_designate: "yes"
-enable_gnocchi: "yes"
+enable_gnocchi: "no"
 enable_heat: "yes"
-enable_ironic: "yes"
-enable_manila: "yes"
+enable_ironic: "no"
+enable_manila: "no"
 enable_octavia: "yes"
-enable_senlin: "yes"
+enable_senlin: "no"
 
 enable_grafana: "yes"
 enable_prometheus: "yes"
 enable_redis: "yes"
-enable_skydive: "yes"
+enable_skydive: "no"
 
 # generic
 
@@ -75,7 +75,8 @@ keystone_identity_mappings:
 libvirt_enable_sasl: "no"
 
 # neutron
-neutron_plugin_agent: ovn
+neutron_plugin_agent: "ovn"
+# neutron_plugin_agent: "openvswitch"
 
 enable_neutron_agent_ha: "yes"
 enable_neutron_qos: "yes"

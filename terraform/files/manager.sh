@@ -99,6 +99,10 @@ sudo -iu dragon sh -c 'INTERACTIVE=false osism apply network'
 # apply workarounds
 sudo -iu dragon sh -c 'INTERACTIVE=false osism apply --environment custom workarounds'
 
+# deploy wireguard
+sudo -iu dragon sh -c 'INTERACTIVE=false osism-run custom wireguard'
+sed -i -e s/MANAGER_PUBLIC_IP_ADDRESS/$(curl my.ip.fi)/ /home/dragon/wireguard-client.conf
+
 # reboot nodes
 sudo -iu dragon sh -c 'INTERACTIVE=false osism apply reboot -l testbed-nodes -e ireallymeanit=yes'
 sudo -iu dragon sh -c 'INTERACTIVE=false osism apply wait-for-connection -l testbed-nodes -e ireallymeanit=yes'
@@ -128,7 +132,7 @@ fi
 # deploy infrastructure services
 if [[ "$DEPLOY_INFRASTRUCTURE" == "true" ]]; then
     sudo -iu dragon sh -c '/opt/configuration/scripts/002-infrastructure-services-basic.sh'
-    sudo -iu dragon sh -c '/opt/configuration/scripts/006-infrastructure-services-extended.sh'
+    # sudo -iu dragon sh -c '/opt/configuration/scripts/006-infrastructure-services-extended.sh'
 fi
 
 # deploy ceph services
@@ -142,7 +146,7 @@ if [[ "$DEPLOY_OPENSTACK" == "true" ]]; then
         echo "infrastructure services are necessary for the deployment of OpenStack"
     else
         sudo -iu dragon sh -c '/opt/configuration/scripts/004-openstack-services-basic.sh'
-        sudo -iu dragon sh -c '/opt/configuration/scripts/009-openstack-services-baremetal.sh'
+        # sudo -iu dragon sh -c '/opt/configuration/scripts/009-openstack-services-baremetal.sh'
     fi
 fi
 
