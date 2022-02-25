@@ -3,7 +3,7 @@
   hosts: all
   gather_facts: false
 
-  tasks:
+  taskss:
     - name: Install required packages
       become: true
       apt:
