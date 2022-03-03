@@ -75,10 +75,11 @@ keystone_identity_mappings:
 libvirt_enable_sasl: "no"
 
 # neutron
-neutron_plugin_agent: "ovn"
-# neutron_plugin_agent: "openvswitch"
+# neutron_plugin_agent: "ovn"
+neutron_plugin_agent: "openvswitch"
 
 enable_neutron_agent_ha: "yes"
+enable_neutron_bgp_dragent: "yes"
 enable_neutron_qos: "yes"
 
 # NOTE: This volume is only needed in the testbed so that the virtualbmc service can access the Libvirt sockets.
@@ -87,7 +88,7 @@ nova_libvirt_extra_volumes:
 
 # nova
 nova_console: novnc
-nova_virt_type: kvm
+nova_virt_type: qemu
 
 # octavia
 octavia_network_type: tenant
