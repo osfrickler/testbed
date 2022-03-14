@@ -31,7 +31,6 @@ enable_heat: "yes"
 enable_ironic: "yes"
 enable_manila: "yes"
 enable_octavia: "yes"
-enable_panko: "yes"
 enable_senlin: "yes"
 
 enable_grafana: "yes"
@@ -44,6 +43,7 @@ enable_skydive: "yes"
 # generic
 
 openstack_service_workers: 2
+openstack_logging_debug: "True"
 
 # profiling
 enable_osprofiler: "no"
@@ -103,7 +103,6 @@ octavia_loadbalancer_topology: "ACTIVE_STANDBY"
 
 # ceilometer
 ceilometer_database_type: gnocchi
-ceilometer_event_type: panko
 
 # designate
 designate_ns_record: openstack.testbed.osism.xyz

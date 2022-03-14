@@ -39,7 +39,7 @@ variable "flavor_node_alt" {
 
 variable "flavor_manager" {
   type    = string
-  default = "4C-8GB-20GB"
+  default = "4C-8GB-40GB"
 }
 
 variable "availability_zone" {
@@ -109,7 +109,7 @@ variable "manager_version" {
 
 variable "openstack_version" {
   type    = string
-  default = "wallaby"
+  default = "xena"
 }
 
 variable "number_of_nodes" {

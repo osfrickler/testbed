@@ -5,23 +5,6 @@ Usage
 .. contents::
    :local:
 
-Tailscale
-=========
-
-Tailscale is a zero config VPN service that just works.
-
-* Visit https://login.tailscale.com/admin/settings/authkeys and generate
-  a one-off-key or reusable key.
-
-* Deploy the tailscale service
-
-  .. code-block:: console
-
-     osism-infrastructure tailscale -e tailscale_authkey=tskey-xxx
-
-* Afterwards the route settings for ``testbed-manager`` have to be reviewed
-  and activated manually under https://login.tailscale.com/admin/machines.
-
 Wireguard
 =========
 
@@ -29,7 +12,7 @@ Wireguard
 
   .. code-block:: console
 
-     osism-run custom wireguard
+     osism apply wireguard
 
 * client configuration can be found in ``/home/dragon/wireguard-client.conf`` on
   ``testbed-manager``, ``MANAGER_PUBLIC_IP_ADDRESS`` has to be replaced by the
@@ -358,25 +341,31 @@ Webinterfaces
       <tbody>
          <tr class="row-even">
             <td>ARA</td>
-            <td><a href="http://testbed-manager.testbed.osism.xyz:8120" target="_blank">http://testbed-manager.testbed.osism.xyz:8120</a></td>
+            <td><a href="https://ara.testbed.osism.xyz/" target="_blank">https://ara.testbed.osism.xyz/</a></td>
             <td>ara</td>
             <td>password</td>
          </tr>
          <tr class="row-odd">
             <td>Ceph</td>
-            <td><a href="http://api-int.testbed.osism.xyz:8140" target="_blank">http://api-int.testbed.osism.xyz:8140</a></td>
+            <td><a href="https://api-int.testbed.osism.xyz:8140" target="_blank">https://api-int.testbed.osism.xyz:8140</a></td>
             <td>admin</td>
             <td>password</td>
          </tr>
+         <tr class="row-even">
+            <td>Flower</td>
+            <td><a href="https://flower.testbed.osism.xyz/" target="_blank">https://flower.testbed.osism.xyz/</a></td>
+            <td>-</td>
+            <td>-</td>
+         </tr>
          <tr class="row-odd">
             <td>Grafana</td>
-            <td><a href="http://api.testbed.osism.xyz:3000" target="_blank">http://api.testbed.osism.xyz:3000</a></td>
+            <td><a href="https://api-int.testbed.osism.xyz:3000" target="_blank">https://api-int.testbed.osism.xyz:3000</a></td>
             <td>admin</td>
             <td>password</td>
          </tr>
          <tr class="row-even">
             <td>Horizon</td>
-            <td><a href="http://api.testbed.osism.xyz" target="_blank">http://api.testbed.osism.xyz</a></td>
+            <td><a href="https://api.testbed.osism.xyz" target="_blank">https://api.testbed.osism.xyz</a></td>
             <td>admin</td>
             <td>password</td>
          </tr>
@@ -388,39 +377,45 @@ Webinterfaces
          </tr>
          <tr class="row-even">
             <td>Kibana</td>
-            <td><a href="http://api.testbed.osism.xyz:5601" target="_blank">http://api.testbed.osism.xyz:5601</a></td>
+            <td><a href="https://api.testbed.osism.xyz:5601" target="_blank">https://api.testbed.osism.xyz:5601</a></td>
             <td>kibana</td>
             <td>password</td>
          </tr>
          <tr class="row-odd">
             <td>Netbox</td>
-            <td><a href="http://testbed-manager.testbed.osism.xyz:8121" target="_blank">http://testbed-manager.testbed.osism.xyz:8121</a></td>
+            <td><a href="https://netbox.testbed.osism.xyz/" target="_blank">https://netbox.testbed.osism.xyz/</a></td>
             <td>admin</td>
             <td>password</td>
          </tr>
          <tr class="row-even">
             <td>Netdata</td>
-            <td><a href="http://testbed-manager.testbed.osism.xyz:19999" target="_blank">http://testbed-manager.testbed.osism.xyz:19999</a></td>
+            <td><a href="https://testbed-manager.testbed.osism.xyz:19999" target="_blank">https://testbed-manager.testbed.osism.xyz:19999</a></td>
             <td>-</td>
             <td>-</td>
          </tr>
          <tr class="row-odd">
             <td>Patchman</td>
-            <td><a href="http://testbed-manager.testbed.osism.xyz:8150" target="_blank">http://testbed-manager.testbed.osism.xyz:8150</a></td>
+            <td><a href="https://patchman.testbed.osism.xyz/" target="_blank">https://patchman.testbed.osism.xyz/</a></td>
             <td>patchman</td>
             <td>password</td>
          </tr>
          <tr class="row-even">
-            <td>Skydive</td>
-            <td><a href="http://testbed-manager.testbed.osism.xyz:8085" target="_blank">http://testbed-manager.testbed.osism.xyz:8085</a></td>
-            <td>admin</td>
-            <td>password</td>
+            <td>Prometheus</td>
+            <td><a href="https://api-int.testbed.osism.xyz:9091/" target="_blank">https://api-int.testbed.osism.xyz:9091/</a></td>
+            <td>-</td>
+            <td>-</td>
          </tr>
          <tr class="row-odd">
             <td>phpMyAdmin</td>
-            <td><a href="http://testbed-manager.testbed.osism.xyz:8110" target="_blank">http://testbed-manager.testbed.osism.xyz:8110</a></td>
+            <td><a href="https://phpmyadmin.testbed.osism.xyz" target="_blank">https://phpmyadmin.testbed.osism.xyz</a></td>
             <td>root</td>
             <td>password</td>
+         </tr>
+         <tr class="row-even">
+            <td>RabbitMQ</td>
+            <td><a href="https://api-int.testbed.osism.xyz:15672/" target="_blank">https://api-int.testbed.osism.xyz:15672/</a></td>
+            <td>openstack</td>
+            <td>BO6yGAAq9eqA7IKqeBdtAEO7aJuNu4zfbhtnRo8Y</td>
          </tr>
       </tbody>
    </table>
@@ -446,7 +441,7 @@ Deploy `Ceph` first.
 
 .. code-block:: console
 
-   osism-run custom bootstraph-ceph-dashboard
+   osism apply bootstraph-ceph-dashboard
 
 .. figure:: /images/ceph-dashboard.png
 
@@ -460,7 +455,7 @@ Homer
 
 .. code-block:: console
 
-   osism-infrastructure homer
+   osism apply homer
 
 .. figure:: /images/homer.png
 
@@ -469,7 +464,7 @@ Keycloak
 
 .. code-block:: console
 
-   osism-infrastructure keycloak
+   osism apply keycloak
 
 .. figure:: /images/keycloak.png
 
@@ -485,7 +480,7 @@ Netdata
 
 .. code-block:: console
 
-   osism-monitoring netdata
+   osism apply netdata
 
 .. figure:: /images/netdata.png
 
@@ -497,14 +492,14 @@ Deploy `Clustered infrastructure services`, `Infrastructure services`, and
 
 .. code-block:: console
 
-   osism-kolla deploy skydive
+   osism apply skydive
 
 The Skydive agent creates a high load on the Open vSwitch services. Therefore
 the agent is only started manually when needed.
 
 .. code-block:: console
 
-   osism-generic manage-container -e container_action=stop -e container_name=skydive_agent -l skydive-agent
+   osism apply manage-container -e container_action=stop -e container_name=skydive_agent -l skydive-agent
 
 .. figure:: /images/skydive.png
 
@@ -513,8 +508,8 @@ Patchman
 
 .. code-block:: console
 
-   osism-generic patchman-client
-   osism-infrastructure patchman
+   osism apply patchman-client
+   osism apply patchman
 
 Every night the package list of the clients is transmitted via cron. Initially
 we transfer these lists manually.
@@ -537,7 +532,7 @@ The previous steps can also be done with a custom playbook.
 
 .. code-block:: console
 
-   osism-run custom bootstrap-patchman
+   osism apply bootstrap-patchman
 
 .. figure:: /images/patchman.png
 
@@ -549,7 +544,7 @@ Deploy `Clustered infrastructure services`, `Infrastructure services`, and
 
 .. code-block:: console
 
-   osism-kolla deploy prometheus
+   osism apply prometheus
 
 Tools
 =====
@@ -654,33 +649,58 @@ This section describes how individual parts of the testbed can be deployed.
 
   .. code-block:: console
 
-     osism-ceph testbed
-     osism-run custom fetch-ceph-keys
-     osism-infrastructure cephclient
+     osism apply ceph-mons
+     osism apply ceph-mgrs
+     osism apply ceph-osds
+     osism apply ceph-mdss
+     osism apply ceph-crash
+     osism apply ceph-rgws
+     osism apply copy-ceph-keys
+     osism apply cephclient
 
 * Clustered infrastructure services
 
   .. code-block:: console
 
-     osism-kolla deploy common,haproxy,elasticsearch,rabbitmq,mariadb,redis
+     osism apply common
+     osism apply loadbalancer
+     osism apply elasticsearch
+     osism apply rabbitmq
+     osism apply mariadb
 
 * Infrastructure services (also deploy `Clustered infrastructure services`)
 
   .. code-block:: console
 
-     osism-kolla deploy openvswitch,memcached,kibana
+     osism apply openvswitch
+     osism apply ovn
+     osism apply memcached
+     osism apply kibana
+
 
 * Basic OpenStack services (also deploy `Infrastructure services`,
   `Clustered infrastructure services`, and `Ceph`)
 
   .. code-block:: console
 
-     osism-kolla deploy keystone,horizon,placement,glance,cinder,neutron,nova
-     osism-infrastructure openstackclient
-     osism-custom run bootstrap-basic
+     osism apply keystone
+     osism apply horizon
+     osism apply placement
+     osism apply glance
+     osism apply cinder
+     osism apply neutron
+     osism apply nova
+     osism apply openstackclient
+     osism apply bootstrap-basic
 
 * Additional OpenStack services (also deploy `Basic OpenStack services` and all requirements)
 
   .. code-block:: console
 
-     osism-kolla deploy heat,gnocchi,ceilometer,aodh,panko,barbican,designate
+     osism apply heat
+     osism apply gnocchi
+     osism apply ceilometer
+     osism apply aodh
+     osism apply barbican
+     osism apply designate
+     osism apply octavia
