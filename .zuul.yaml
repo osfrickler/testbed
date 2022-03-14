@@ -1,0 +1,8 @@
+---
+- project:
+    gh_check:
+      jobs:
+        - tox-linters
+    gh_gate:
+      jobs:
+        - tox-linters
