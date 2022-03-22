@@ -455,6 +455,7 @@
         vip_network: test
         auto_public_ip: true
         public_network: public
+        timeout: 1200
         listeners:
           - name: listener_test_22
             protocol: TCP

@@ -17,6 +17,7 @@ osism apply octavia
 
 osism apply --environment openstack bootstrap-keystone
 osism apply --environment openstack bootstrap-basic
-osism apply --environment openstack bootstrap-ceph-rgw
+# No swift fake
+# osism apply --environment openstack bootstrap-ceph-rgw
 
 osism apply openstack-health-monitor
