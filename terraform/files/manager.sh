@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+export DEBIAN_FRONTEND=noninteractive
+
 # NOTE: Because DNS queries don't always work directly at the beginning a
 #       retry for APT.
 echo "APT::Acquire::Retries \"3\";" > /etc/apt/apt.conf.d/80-retries
@@ -49,17 +51,17 @@ chown -R dragon:dragon /home/dragon/.ssh
 
 sudo -iu dragon ansible-playbook -i testbed-manager.testbed.osism.xyz, /opt/manager-part-1.yml -e configuration_git_version=$CONFIGURATION_VERSION
 
-sudo -iu dragon sh -c 'cd /opt/configuration; ./scripts/set-manager-version.sh $MANAGER_VERSION'
+sudo -iu dragon sh -c "cd /opt/configuration; ./scripts/set-manager-version.sh $MANAGER_VERSION"
 
 if [[ "$MANAGER_VERSION" == "latest" ]]; then
-    sudo -iu dragon sh -c 'cd /opt/configuration; ./scripts/set-ceph-version.sh $CEPH_VERSION'
-    sudo -iu dragon sh -c 'cd /opt/configuration; ./scripts/set-openstack-version.sh $OPENSTACK_VERSION'
+    sudo -iu dragon sh -c "cd /opt/configuration; ./scripts/set-ceph-version.sh $CEPH_VERSION"
+    sudo -iu dragon sh -c "cd /opt/configuration; ./scripts/set-openstack-version.sh $OPENSTACK_VERSION"
 else
-    sudo -iu dragon sh -c 'cd /opt/configuration; ./scripts/set-ceph-version.sh $MANAGER_VERSION'
-    sudo -iu dragon sh -c 'cd /opt/configuration; ./scripts/set-openstack-version.sh $MANAGER_VERSION'
+    sudo -iu dragon sh -c "cd /opt/configuration; ./scripts/set-ceph-version.sh $MANAGER_VERSION"
+    sudo -iu dragon sh -c "cd /opt/configuration; ./scripts/set-openstack-version.sh $MANAGER_VERSION"
 fi
 
-sudo -iu dragon sh -c 'cd /opt/configuration; ./scripts/enable-secondary-nodes.sh $NUMBER_OF_NODES'
+sudo -iu dragon sh -c "cd /opt/configuration; ./scripts/enable-secondary-nodes.sh $NUMBER_OF_NODES"
 
 cp /opt/configuration/environments/kolla/certificates/ca/testbed.crt /usr/local/share/ca-certificates/
 update-ca-certificates
@@ -81,9 +83,6 @@ sudo -iu dragon sh -c 'INTERACTIVE=false osism netbox import --vendors Other --n
 sudo -iu dragon sh -c 'INTERACTIVE=false osism netbox init'
 sudo -iu dragon sh -c 'INTERACTIVE=false osism netbox manage 1000'
 sudo -iu dragon sh -c 'INTERACTIVE=false osism netbox connect 1000 --state a'
-sudo -iu dragon sh -c 'INTERACTIVE=false osism netbox disable testbed-switch-0'
-sudo -iu dragon sh -c 'INTERACTIVE=false osism netbox disable testbed-switch-1'
-sudo -iu dragon sh -c 'INTERACTIVE=false osism netbox disable testbed-switch-2'
 
 sudo -iu dragon sh -c 'INTERACTIVE=false osism apply operator -l "all:!manager" -u ubuntu'
 sudo -iu dragon sh -c 'INTERACTIVE=false osism apply --environment custom facts'
@@ -107,6 +106,10 @@ until [[ "$(/usr/bin/docker inspect -f '{{.State.Health.Status}}' manager_ara-se
 do
     sleep 1;
 done;
+
+sudo -iu dragon sh -c 'INTERACTIVE=false osism netbox disable testbed-switch-0'
+sudo -iu dragon sh -c 'INTERACTIVE=false osism netbox disable testbed-switch-1'
+sudo -iu dragon sh -c 'INTERACTIVE=false osism netbox disable testbed-switch-2'
 
 # deploy helper services
 sudo -iu dragon sh -c '/opt/configuration/scripts/001-helper-services.sh'

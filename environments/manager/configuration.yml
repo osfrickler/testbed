@@ -4,14 +4,30 @@
 
 ceph_version: pacific
 manager_version: latest
-openstack_version: wallaby
+openstack_version: xena
+
+##########################
+# listener
+
+# NOTE: It does not work here to work with inventory groups because
+#       the manager's inventory is independent from the rest of the
+#       inventory.
+
+manager_listener_broker_hosts:
+  - 192.168.16.10
+  - 192.168.16.11
+  - 192.168.16.12
+manager_listener_broker_username: openstack
+manager_listener_broker_uri: "{% for host in manager_listener_broker_hosts %}amqp://{{ manager_listener_broker_username }}:{{ manager_listener_broker_password }}@{{ host }}:5672/{% if not loop.last %};{% endif %}{% endfor %}"
 
 ##########################
 # celery
 
 celery_enable: true
 
-flower_host: "{{ hostvars[inventory_hostname]['ansible_' + internal_interface]['ipv4']['address'] }}"
+flower_traefik: true
+flower_host: flower.testbed.osism.xyz
+
 osism_api_host: "{{ hostvars[inventory_hostname]['ansible_' + internal_interface]['ipv4']['address'] }}"
 
 ##########################
@@ -20,22 +36,16 @@ osism_api_host: "{{ hostvars[inventory_hostname]['ansible_' + internal_interface
 ara_enable: true
 
 ara_server_database_type: sqlite3
+ara_server_host: ara.testbed.osism.xyz
 ara_server_traefik: true
-
-##########################
-# vault
-
-vault_enable: true
-
-vault_output_key_shares: true
-vault_write_key_shares: true
 
 ##########################
 # netbox
 
 netbox_enable: true
 
-netbox_api_url: "https://{{ hostvars[inventory_hostname]['ansible_' + internal_interface]['ipv4']['address'] }}/netbox/"
+netbox_host: "netbox.testbed.osism.xyz"
+netbox_api_url: "https://{{ netbox_host }}"
 
 ##########################
 # configuration
