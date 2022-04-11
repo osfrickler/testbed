@@ -1,0 +1,15 @@
+---
+- hosts: all
+  tasks:
+    - name: make clean
+      ansible.builtin.shell:
+        chdir: "{{ ansible_user_dir }}/src/github.com/osfrickler/testbed/terraform"
+        cmd: make clean 2>&1
+
+- hosts: all
+  roles:
+    - stage-output
+  vars:
+    stage_dir: "{{ ansible_user_dir }}/zuul-output"
+    zuul_copy_output:
+      "/tmp/mylog.txt": logs

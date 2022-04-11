@@ -31,6 +31,21 @@
         secret: osfrickler_docs_creds
     run: playbooks/test-secret.yaml
 
+- job:
+    name: testbed-test
+    parent: base-extra-logs
+    nodeset:
+      nodes:
+        - name: orchestrator
+          label: static-testbed
+    run: playbooks/test-run.yaml
+    post-run: playbooks/post.yaml
+    required-projects:
+      - osfrickler/testbed
+      - osism/ansible-collection-commons
+      - osism/ansible-collection-services
+    timeout: 10800
+
 - project:
     vars:
       sphinx_source_dir: docs/source
@@ -39,10 +54,12 @@
       jobs:
         - tox-docs
         - tox-linters
+        - testbed-test
     gate:
       jobs:
         - tox-docs
         - tox-linters
+        - testbed-test
     post:
       jobs:
         - test-secret

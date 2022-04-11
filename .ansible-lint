@@ -1,9 +1,11 @@
 ---
 exclude_paths:
   - contrib/rally
-  - netbox
   - environments/kolla/files/overlays/prometheus/prometheus.yml.d/50-ceph.yml
+  - netbox
+  - playbooks
 mock_roles:
   - manager
+  - stage-output
 skip_list:
   - yaml
