@@ -1,9 +1,16 @@
 ---
+- job:
+    name: test-linters
+    parent: tox-linters
+    nodeset:
+      nodes:
+        - name: test-node
+          label: ubuntu-jammy
+
 - project:
     check:
       jobs:
-        - tox-linters
+        - test-linters
     gate:
-
       jobs:
-        - tox-linters
+        - test-linters
