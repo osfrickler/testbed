@@ -1,6 +1,6 @@
 ---
 - secret:
-    name: osfrickler_docs_pass
+    name: osfrickler_docs_creds
     data:
       pass: !encrypted/pkcs1-oaep
         - KIFgnZrrnq9cXfLtl6hZVvImrFDswc3VK947On4iQFMGIkqLlhL3chpUKEcYACRNp9JOu
@@ -13,9 +13,6 @@
           g3JoJgnpp6xTBscZ+zPTxOnCHuv6zZPeMlXsn+no52Uj2V/AzIg1pXAum0sZThsT/BGg4
           Pbnc2K0HaWc+hOdVe9IaGE07nLKJfJbP1Fxau5WhBJSRvBya3d0G6BUU0vU7qeG08xq6p
           h2G84LTUmSXrIqq91M8ZySwzvkKwc7XP/XyUIe8sCdgbZhYvQrsAYCRPlxLtuo=
-- secret:
-    name: osfrickler_docs_creds
-    data:
       user: !encrypted/pkcs1-oaep
         - o5Rdg0mtQWfo6uTangjviLVLHRGxFPW/oWlBXWbyCfSK55YdjVsmiYLUw79VuAZc4GN36
           SzqeBVmiQKN8kCz6INOFTLQ55IQFw5qj+UY8AAzi4Xy2tJAw+tYJUByhYMq6hwRjYbP5G
