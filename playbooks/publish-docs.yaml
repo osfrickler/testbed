@@ -1,0 +1,22 @@
+---
+- hosts: all
+  tasks:
+    - name: install rclone
+      ansible.builtin.package:
+        name: rclone
+        state: present
+    - name: create rclone config dir
+      ansible.builtin.file:
+        path: "~/.config/rclone"
+        state: directory
+        recurse: true
+        mode: "0700"
+    - name: create rclone config file
+      ansible.builtin.copy:
+        content: "{{ sftp_creds.rclone }}"
+        dest: "~/.config/rclone/rclone.conf"
+        mode: "0600"
+    - name: run rclone
+      ansible.builtin.shell: |
+        "rclone doc/build/html doc:{{ zuul.project.short_name }}/"
+      changed_when: true
