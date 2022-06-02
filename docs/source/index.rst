@@ -1,5 +1,5 @@
 =============
-OSISM testbed
+OSISM testbet
 =============
 
 With this testbed, it is possible to run a full OSISM installation, the baseline
