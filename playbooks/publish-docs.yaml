@@ -15,5 +15,5 @@
       no_log: true
     - name: run rclone
       ansible.builtin.shell: |
-        "rclone doc/build/html doc:{{ zuul.project.short_name }}/"
+        rclone doc/build/html doc:{{ zuul.project.short_name }}/
       changed_when: true
