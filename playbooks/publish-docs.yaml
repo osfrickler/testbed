@@ -16,4 +16,6 @@
     - name: run rclone
       ansible.builtin.shell: |
         rclone copy doc/build/html doc:{{ zuul.project.short_name }}/
+      args:
+        chdir: "{{ zuul.project.src_dir }}"
       changed_when: true
