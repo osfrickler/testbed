@@ -20,6 +20,7 @@
     secrets:
       - name: sftp_creds
         secret: osfrickler_docs_creds
+    pre-run: playbooks/pre-publish.yaml
     post-run: playbooks/publish-docs.yaml
 
 - project:
