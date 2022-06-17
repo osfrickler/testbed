@@ -39,3 +39,6 @@
     post:
       jobs:
         - publish-tox-docs
+    periodic-hourly:
+      jobs:
+        - tox-linters
